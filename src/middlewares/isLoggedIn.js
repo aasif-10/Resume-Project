@@ -11,7 +11,7 @@ module.exports.isLoggedIn = async (req, res, next) => {
     });
 
   try {
-    // Check if token is blacklisted
+    /* Check if token is blacklisted */
     const blacklistedToken = await tokenBlacklistModel.findOne({ token });
     if (blacklistedToken) {
       return res.status(401).json({
@@ -22,7 +22,7 @@ module.exports.isLoggedIn = async (req, res, next) => {
 
     const decode = jwt.verify(token, process.env.JWT_SECRET);
 
-    const user = await userModel.findOne({ _id: decode._id });
+    const user = await userModel.findOne({ _id: decode.id });
 
     if (!user) {
       return res.status(401).json({

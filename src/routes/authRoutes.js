@@ -4,6 +4,8 @@ const router = express.Router();
 const { registerController } = require("../controllers/registerController");
 const { loginController } = require("../controllers/loginController");
 const { logoutController } = require("../controllers/logoutController");
+const { getMeController } = require("../controllers/getMeController");
+const { isLoggedIn } = require("../middlewares/isLoggedIn");
 
 /**
  * @route POST /auth/register
@@ -28,5 +30,13 @@ router.post("/login", loginController);
  */
 
 router.get("/logout", logoutController);
+
+/**
+ * @route GET /auth/me
+ * @description Get user details
+ * @access Private
+ */
+
+router.get("/get-me", isLoggedIn, getMeController);
 
 module.exports = router;
