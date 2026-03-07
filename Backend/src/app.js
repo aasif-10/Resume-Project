@@ -20,6 +20,7 @@ app.use(
 /* database models */
 const userModel = require("./models/user-model");
 const tokenBlacklistModel = require("./models/token-blacklist-model");
+const resumeModel = require("./models/resume-model");
 
 /* Routes */
 const authRoutes = require("../src/routes/authRoutes");
