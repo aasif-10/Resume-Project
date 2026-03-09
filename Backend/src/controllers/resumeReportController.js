@@ -1,4 +1,4 @@
-const pdfParse = require("pdf-parse");
+const { PDFParse } = require("pdf-parse");
 const { generateResumeReport } = require("../services/ai");
 const resumeModel = require("../models/resume-model");
 
@@ -31,7 +31,9 @@ module.exports.resumeReportController = async (req, res) => {
 
   let resumeContent = null;
   if (resume) {
-    resumeContent = await pdfParse(Buffer.from(req.file.buffer)).text;
+    const parser = new PDFParse(Uint8Array.from(req.file.buffer));
+    resumeContent = await parser.getText();
+    resumeContent = resumeContent.text;
   }
 
   const result = await generateResumeReport(
@@ -43,7 +45,7 @@ module.exports.resumeReportController = async (req, res) => {
   const resumeReport = await resumeModel.create({
     user: req.user._id,
     jobDescription,
-    resume: resumeContent,
+    resumeContent,
     selfDescription,
     ...result,
   });
@@ -52,4 +54,6 @@ module.exports.resumeReportController = async (req, res) => {
     message: "success",
     resumeReport,
   });
+
+  console.log(resumeContent);
 };
