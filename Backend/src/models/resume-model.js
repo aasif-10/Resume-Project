@@ -1,62 +1,74 @@
 const mongoose = require("mongoose");
 
-const skillGapSchema = mongoose.Schema({
-  missingSkills: [
-    {
-      type: String,
-      default: [],
-    },
-  ],
+const skillGapSchema = mongoose.Schema(
+  {
+    missingSkills: [
+      {
+        type: String,
+        default: [],
+      },
+    ],
 
-  matchedSkills: [
-    {
-      type: String,
-      default: [],
-    },
-  ],
-});
+    matchedSkills: [
+      {
+        type: String,
+        default: [],
+      },
+    ],
+  },
+  { _id: false },
+);
 
-const resumeQualitySchema = mongoose.Schema({
-  missing: [
-    {
-      type: String,
-      required: true,
-      default: [],
-    },
-  ],
-  improvement: [
-    {
-      type: String,
-      required: true,
-      default: [],
-    },
-  ],
-});
+const resumeQualitySchema = mongoose.Schema(
+  {
+    missing: [
+      {
+        type: String,
+        required: true,
+        default: [],
+      },
+    ],
+    improvement: [
+      {
+        type: String,
+        required: true,
+        default: [],
+      },
+    ],
+  },
+  { _id: false },
+);
 
-const qualificationSchema = mongoose.Schema({
-  missingQualifications: [
-    {
-      type: String,
-      default: [],
-    },
-  ],
-});
+const qualificationSchema = mongoose.Schema(
+  {
+    missingQualifications: [
+      {
+        type: String,
+        default: [],
+      },
+    ],
+  },
+  { _id: false },
+);
 
-const projectSchema = mongoose.Schema({
-  missingProjects: [
-    {
-      type: String,
-      default: [],
-    },
-  ],
+const projectSchema = mongoose.Schema(
+  {
+    missingProjects: [
+      {
+        type: String,
+        default: [],
+      },
+    ],
 
-  recommededProjects: [
-    {
-      type: String,
-      default: [],
-    },
-  ],
-});
+    recommededProjects: [
+      {
+        type: String,
+        default: [],
+      },
+    ],
+  },
+  { _id: false },
+);
 
 const resumeSchema = mongoose.Schema({
   user: {

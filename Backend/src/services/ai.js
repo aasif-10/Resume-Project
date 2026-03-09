@@ -2,15 +2,22 @@ require("dotenv").config();
 
 const { GoogleGenAI } = require("@google/genai");
 
-module.exports.invokeGemini = async () => {
+module.exports.generateResumeReport = async (
+  jobDescription,
+  selfDescription,
+  resumeContent,
+) => {
   const prompt = `
     Analyze the following resume against the job description
     
     JOB DESCRIPTION:
-    ${mockJobDescription}
+    ${jobDescription}
     
     RESUME CONTENT:
-    ${mockResumeContent}
+    ${resumeContent}
+
+    SELF DESCRIPTION:
+    ${selfDescription}
     
     Be specific and actionable in your recommendations.
     
@@ -24,7 +31,7 @@ module.exports.invokeGemini = async () => {
         description:
           "Numerical score from 0-100 indicating how well the resume matches the job requirements",
       },
-      skillGaps: {
+      skillGap: {
         type: "object",
         properties: {
           missingSkills: {
@@ -93,7 +100,7 @@ module.exports.invokeGemini = async () => {
     },
     required: [
       "matchScore",
-      "skillGaps",
+      "skillGap",
       "resumeQualityRecommendation",
       "qualification",
       "projectRecommendation",

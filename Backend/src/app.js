@@ -24,8 +24,9 @@ const resumeModel = require("./models/resume-model");
 
 /* Routes */
 const authRoutes = require("../src/routes/authRoutes");
-
+const resumeRoutes = require("./routes/resumeRoutes");
 /* Use routes */
 app.use("/auth", authRoutes);
+app.use("/resume", resumeRoutes);
 
 module.exports = app;
