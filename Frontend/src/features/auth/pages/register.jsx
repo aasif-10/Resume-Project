@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import "../auth-style.scss";
+import "../style/auth-style.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 
 const Register = () => {
   const navigate = useNavigate();
 
-  const { loading, setLoading, handleRegister } = useAuth();
+  const { loading, handleRegister } = useAuth();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -15,7 +15,7 @@ const Register = () => {
     e.preventDefault();
 
     await handleRegister(username, email, password);
-    navigate("/");
+    navigate("/upload");
   };
 
   if (loading) {

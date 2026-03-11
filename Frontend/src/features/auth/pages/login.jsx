@@ -1,5 +1,5 @@
 import React from "react";
-import "../auth-style.scss";
+import "../style/auth-style.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import { useState } from "react";
@@ -15,7 +15,7 @@ const Login = () => {
     e.preventDefault();
 
     await handleLogin(email, password);
-    navigate("/");
+    navigate("/upload");
   };
 
   if (loading) {
@@ -84,7 +84,8 @@ const Login = () => {
 
         <div className="auth-link">
           <p>
-            Don&apos;t have an account? <Link to={"/auth/register"}>Sign up</Link>
+            Don&apos;t have an account?{" "}
+            <Link to={"/auth/register"}>Sign up</Link>
           </p>
         </div>
       </div>
